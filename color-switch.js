@@ -20,20 +20,23 @@ const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+function btnView(add, remove) {
+   refs.btnStart.disabled = add;
+   refs.btnStop.disabled = remove;
+}
+
 function changeColor() {
   intId = setInterval(() => {
     const randomIndex = randomIntegerFromInterval(0, colors.length - 1);
     refs.body.style.backgroundColor = `${colors[randomIndex]}`;
   }, 1000);
 
-  refs.btnStart.disabled = true;
-  refs.btnStop.disabled = false;
+   btnView(true,false)
 }
 
 function stopChangeColor() {
-  refs.btnStart.disabled = false;
-  refs.btnStop.disabled = true;
 
+  btnView(false, true)
   clearInterval(intId);
 }
 
